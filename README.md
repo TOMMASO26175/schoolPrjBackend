@@ -5,7 +5,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Portal of a sports center</h3>
+<h3 align="center">School Project</h3>
 
   <p align="center">
     Portal of a sports center. 

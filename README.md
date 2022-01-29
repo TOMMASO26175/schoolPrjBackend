@@ -9,8 +9,11 @@
 
   <p align="center">
     Portal of a sports center. 
-    Everyone has their own account(Stored in the database) 
+    <br />
+    Everyone has their own account(Stored in the database)
+    <br />
     Users can connect to the webapp to see their subscriptios, deadlines, promotions
+    <br />
     Admis can handle users throught the portal, modything users stuffs
     <br />
     <a href="https://github.com/TOMMASO26175/schoolPrj"><strong>Explore the docs »</strong></a>

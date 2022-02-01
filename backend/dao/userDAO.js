@@ -66,10 +66,7 @@ export default class UserDAO {
         });
       }
 
-      var passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password
-      );
+      var passwordIsValid = bcrypt.compareSync(req.body.password,user.password);
 
       if (!passwordIsValid) {
         return res.status(401).send({
@@ -79,13 +76,9 @@ export default class UserDAO {
       }
 
       var token = jwt.sign(
-        {
-          id: user.id,
-        },
+        {id: user.id},
         process.env.API_KEY,
-        {
-          expiresIn: 86400,
-        }
+        {expiresIn: 86400,}
       );
 
       res.status(200).send({
@@ -94,9 +87,11 @@ export default class UserDAO {
           email: user.email,
           fullName: user.fullName,
         },
-        message: "Login successfull",
+        message: "Login successful",
         accessToken: token,
       });
+      console.log(`token: ${token}`)
+
     });
   }
 }

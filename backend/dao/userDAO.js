@@ -90,7 +90,7 @@ export default class UserDAO {
         message: "Login successful",
         accessToken: token,
       });
-      console.log(`token: ${token}`)
+      //console.log(`token: ${token}`)
 
     });
   }

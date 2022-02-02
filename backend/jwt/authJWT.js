@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import User from "../models/model.user.js"
 //WIP
-export default function verifyToken(req, res){
+export default async function verifyToken(req, res, cb){
   jwt.verify(req.body.authorization,process.env.API_KEY, function (err,decode){
     if (err){
       res.status(500).send({message: err})
@@ -12,8 +12,7 @@ export default function verifyToken(req, res){
         res.status(500).send({message: err})
         return
       }
-      console.log(usr)
-      return usr
+      cb(usr)
     })
   })
 }

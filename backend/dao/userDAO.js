@@ -96,4 +96,18 @@ export default class UserDAO {
     });
   }
 
+  //LOGGED USER FUNCTIONS
+
+  static async checkSubscription(user,res){
+    if(!user.subscription){
+      res.status(200).send({
+        message: "You don't have a subscription, APPLY NOW!"
+      });
+    }
+
+    
+  }
+
+  static async createSubscription(req,res){
+  }
 }

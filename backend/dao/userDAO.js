@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import User from "../models/model.user.js";
+import Subscriptions from "../models/model.subscriptions.js";
 
 export default class UserDAO {
   static async initDB() {
@@ -94,4 +95,5 @@ export default class UserDAO {
 
     });
   }
+
 }

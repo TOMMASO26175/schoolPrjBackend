@@ -33,6 +33,11 @@ var userSchema = new Schema({
   created: {
     type: Date,
     default: Date.now
+  },
+  subscriptions: {
+    type: Schema.Types.ObjectId,
+    ref: 'Subscription',
+    default: null
   }
 });
 

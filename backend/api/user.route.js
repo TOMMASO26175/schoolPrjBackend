@@ -14,4 +14,11 @@ router.get('/home',function(req,res){
     })
 })
 
+router.post('/subscribe',function(req,res){
+    verifyToken(req,res,function(cb){
+        var user = cb
+        UserDAO.signUpSubscription(req,res,user)
+    })
+})
+
 export default router

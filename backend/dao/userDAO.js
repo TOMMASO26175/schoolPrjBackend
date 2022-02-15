@@ -99,15 +99,28 @@ export default class UserDAO {
   //LOGGED USER FUNCTIONS
 
   static async checkSubscription(user,res){
-    if(!user.subscription){
+    const sub = user.subscription
+    if(!sub){
       res.status(200).send({
         message: "You don't have a subscription, APPLY NOW!"
       });
     }
+    var {_id,user_id,ren_date,paid,type} = sub;
+    res.status(200).send({
+      _id: _id,
+      user_id: user_id,
+      ren_date: ren_date,
+      paid: paid,
+      type: type
+    })
 
     
   }
 
-  static async createSubscription(req,res){
+  static async signUpSubscription(req,res,{}){
+    const subscription = new Subscriptions({
+      type: req.type,
+      
+    })
   }
 }

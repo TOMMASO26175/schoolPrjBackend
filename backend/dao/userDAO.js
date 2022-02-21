@@ -98,16 +98,46 @@ export default class UserDAO {
 
   //LOGGED USER FUNCTIONS
 
-  static async checkSubscription(user,res){
-    if(!user.subscription){
-      res.status(200).send({
-        message: "You don't have a subscription, APPLY NOW!"
-      });
+  static async checkSubscription(user,res,returnSub,cb){
+    const sub = user.subscription
+    if(!sub){
+      return cb(false)
     }
-
-    
+    cb(true)
+    if(returnSub){
+      return res.status(200).send({
+        message: "Here's your subscription!",
+        data:{
+          _id: sub._id,
+          user_id: sub.user_id,
+          renewalDate: sub.renewalDate,
+          type: sub.type
+        }
+      })
+    }
   }
 
-  static async createSubscription(req,res){
+  static async createSubscription(req,res,user){
+
+    const sub = new Subscriptions({
+      user_id: user._id,
+      renewalDate: req.body.date,
+      type: req.body.type,
+    });
+    const filter = { email: user.email };
+    const update = { fullName: "ciao"};
+    sub.save((err, user) => {
+      if (err) {
+        res.status(500).send({
+          message: err,
+        });
+        return;
+      } else {
+        User.updateOne(filter,update)
+        res.status(200).send({
+          message: "User Subscribed successfully",
+        });
+      }
+    });
   }
 }

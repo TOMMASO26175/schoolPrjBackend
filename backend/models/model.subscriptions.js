@@ -13,11 +13,6 @@ var subscriptions = new Schema({
         default: null
     },
 
-    paid:{
-        type: Boolean,
-        default: null
-    },
-
     type:{
         type: Object,
         default:null

@@ -6,6 +6,7 @@ const router = express.Router()
 router.route("/register").post(UserDAO.signUp)
 router.route("/login").post(UserDAO.signIn)
 router.route("/list").get(UserDAO.usList)
+router.route("/sublist").get(UserDAO.usListSub)
 //WIP
 router.get('/home',function(req,res){
     verifyToken(req,res,function(cb){
@@ -34,13 +35,6 @@ router.post('/subscribe',function(req,res){
         })
             
         
-    })
-})
-
-router.post('/subscribe',function(req,res){
-    verifyToken(req,res,function(cb){
-        var user = cb
-        UserDAO.signUpSubscription(req,res,user)
     })
 })
 

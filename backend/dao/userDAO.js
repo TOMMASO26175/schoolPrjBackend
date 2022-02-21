@@ -29,6 +29,18 @@ export default class UserDAO {
     });
   }
 
+  static async usListSub(req,res){
+    Subscriptions.find({}, function(err, sub) {
+      var subMap = {};
+  
+      sub.forEach(function(subId) {
+        subMap[subId._id] = subId;
+      });
+  
+      res.send(subMap);  
+    });
+  }
+
   static async signUp(req, res) {
     const user = new User({
       fullName: req.body.fullName,
@@ -118,14 +130,17 @@ export default class UserDAO {
   }
 
   static async createSubscription(req,res,user){
-
+    let date = new Date()
     const sub = new Subscriptions({
       user_id: user._id,
-      renewalDate: req.body.date,
+      renewalDate: req.body.renewalDate || date.getFullYear().toString() + "-" + (date.getMonth()+2).toString() + "-" + (date.getDate()+1).toString(),
       type: req.body.type,
     });
+    
+
     const filter = { email: user.email };
-    const update = { subscriptions: "ciao"};
+    const update = { subscriptions: sub._id};
+
     sub.save((err, user) => {
       if (err) {
         res.status(500).send({
@@ -133,7 +148,15 @@ export default class UserDAO {
         });
         return;
       } else {
-        User.updateOne(filter,update)
+        User.updateOne(filter, 
+          update, function (err, docs) {
+          if (err){
+              console.log(err)
+          }
+          else{
+              console.log("Updated Docs : ", docs);
+          }
+      });
         res.status(200).send({
           message: "User Subscribed successfully",
         });

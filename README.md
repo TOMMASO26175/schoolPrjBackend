@@ -12,7 +12,7 @@
     <br />
     Everyone has their own account(Stored in the database)
     <br />
-    Users can connect to the webapp to see their subscriptios, deadlines, promotions
+    Users can connect to the webapp to see their subscriptions, deadlines, promotions
     <br />
     Admis can handle users throught the portal, modything users stuffs
     <br />

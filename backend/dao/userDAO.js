@@ -125,7 +125,7 @@ export default class UserDAO {
       type: req.body.type,
     });
     const filter = { email: user.email };
-    const update = { fullName: "ciao"};
+    const update = { subscriptions: "ciao"};
     sub.save((err, user) => {
       if (err) {
         res.status(500).send({

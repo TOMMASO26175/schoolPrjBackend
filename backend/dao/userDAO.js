@@ -133,10 +133,14 @@ export default class UserDAO {
     }
   }
 
-  static async createSubscription(req,res,user){
+  static async getDate(){
     let date = new Date()
+    return date.getFullYear().toString() + "-" + (date.getMonth()+1).toString() + "-" + (date.getDate()+1).toString()
+  }
+
+  static async createSubscription(req,res,user){
     const sub = new Subscriptions({
-      renewalDate: req.body.renewalDate || date.getFullYear().toString() + "-" + (date.getMonth()+2).toString() + "-" + (date.getDate()+1).toString(),
+      renewalDate: req.body.renewalDate || await this.getDate(),
       type: req.body.type,
     });
     
@@ -190,6 +194,29 @@ export default class UserDAO {
 
     res.status(200).send({
       message: "Subscription deleted successfully",
+    });
+
+  }
+
+  static async updateSub(req,res,user){
+    const filter = {
+      _id: user.subscription
+    }
+    const update = {
+      renewalDate: await this.getDate(),
+      type: req.body.type
+    }
+    Subscriptions.updateOne(filter,update,function(err,docs){
+      if(err){
+        console.log(err)
+      }else{
+        console.log("SUBSCRIPTIONS | Updated : ", docs.modifiedCount)
+      }
+  
+    })
+
+    res.status(200).send({
+      message: "Subscription updated successfully",
     });
 
   }

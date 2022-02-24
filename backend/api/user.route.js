@@ -56,4 +56,22 @@ router.delete('/deletesub',function(req,res){
     })
 })
 
+router.put('/updatesub',function(req,res){
+    verifyToken(req,res,function(cb){
+        var user = cb
+        UserDAO.checkSubscription(user,res,false,function(sub){
+            if(!sub){
+                res.status(200).send({
+                    message: "You don't have a subscription to update"
+                });
+            }else{
+                UserDAO.updateSub(req,res,user)
+            }
+        })
+            
+        
+    })
+})
+
+
 export default router

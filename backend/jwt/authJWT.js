@@ -12,6 +12,11 @@ export default async function verifyToken(req, res, cb){
         res.status(500).send({message: err})
         return
       }
+      
+      if(!usr){
+        res.status(500).send({message: "Error: user not found"})
+        return
+      }
       cb(usr)
     })
   })

@@ -34,7 +34,7 @@ var userSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  subscriptions: {
+  subscription: {
     type: Schema.Types.ObjectId,
     ref: 'Subscription',
     default: null

@@ -117,14 +117,18 @@ export default class UserDAO {
     }
     cb(true)
     if(returnSub){
-      return res.status(200).send({
-        message: "Here's your subscription!",
-        data:{
-          _id: sub._id,
-          user_id: sub.user_id,
-          renewalDate: sub.renewalDate,
-          type: sub.type
+      Subscriptions.findById(sub._id,(err,obj) =>{
+        if(err){
+          console.log(err)
         }
+        return res.status(200).send({
+          message: "Here's your subscription!",
+          data:{
+            _id: obj._id,
+            renewalDate: obj.renewalDate,
+            type: obj.type
+          }
+        })
       })
     }
   }
@@ -138,7 +142,7 @@ export default class UserDAO {
     
 
     const filter = { email: user.email };
-    const update = { subscriptions: user._id};
+    const update = { subscription: sub._id};
 
     sub.save((err, user) => {
       if (err) {
@@ -153,13 +157,40 @@ export default class UserDAO {
               console.log(err)
           }
           else{
-              console.log("Updated Docs : ", docs);
+              console.log("USER | Updated : ", docs.modifiedCount);
           }
-      });
+        });
         res.status(200).send({
           message: "User Subscribed successfully",
         });
       }
     });
+  }
+
+  static async deleteSub(user,res){
+    const filter = { email: user.email };
+    const update = { subscription: null};
+    User.updateOne(filter, 
+      update, function (err, docs) {
+      if (err){
+          console.log(err)
+      }
+      else{
+          console.log("USER | Updated : ", docs.modifiedCount);
+      }
+    });
+    Subscriptions.deleteOne(user.subscription,function(err,docs){
+      if(err){
+        console.log(err)
+      }else{
+        console.log("SUBSCRIPTIONS | Deleted : ", docs.deletedCount)
+      }
+  
+    })
+
+    res.status(200).send({
+      message: "Subscription deleted successfully",
+    });
+
   }
 }

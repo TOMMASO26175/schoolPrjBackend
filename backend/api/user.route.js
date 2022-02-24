@@ -38,4 +38,22 @@ router.post('/subscribe',function(req,res){
     })
 })
 
+
+router.delete('/deletesub',function(req,res){
+    verifyToken(req,res,function(cb){
+        var user = cb
+        UserDAO.checkSubscription(user,res,false,function(sub){
+            if(!sub){
+                res.status(200).send({
+                    message: "You don't have a subscription to delete"
+                });
+            }else{
+                UserDAO.deleteSub(user,res)
+            }
+        })
+            
+        
+    })
+})
+
 export default router

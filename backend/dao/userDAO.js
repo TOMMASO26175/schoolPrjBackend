@@ -16,30 +16,6 @@ export default class UserDAO {
       console.error(error);
     }
   }
-  //FOR TESTING ONLY (ATM)
-  static async usList(req, res) {
-    User.find({}, function (err, users) {
-      var userMap = {};
-
-      users.forEach(function (user) {
-        userMap[user._id] = user;
-      });
-
-      res.send(userMap);
-    });
-  }
-
-  static async usListSub(req, res) {
-    Subscriptions.find({}, function (err, sub) {
-      var subMap = {};
-
-      sub.forEach(function (subId) {
-        subMap[subId._id] = subId;
-      });
-
-      res.send(subMap);
-    });
-  }
 
   static async signUp(req, res) {
     const user = new User({

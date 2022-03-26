@@ -1,6 +1,10 @@
 import express from "express";
+import AdminDao from "../dao/adminDAO.js";
 import verifyToken from "../jwt/authJWT.js";
+
 const router = express.Router();
+router.route("/list").get(AdminDao.usList);
+router.route("/sublist").get(AdminDao.usListSub);
 
 router.route("/").get((req, res) => {
   verifyToken(req, res, function (user) {
@@ -9,7 +13,7 @@ router.route("/").get((req, res) => {
     }
     if (user.role == "admin") {
       res.status(200).send({
-        message: "Logging into admin session",
+        message: "Admin Panel",
       });
     } else {
       res.status(403).send({

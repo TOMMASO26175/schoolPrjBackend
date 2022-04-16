@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/TOMMASO26175/schoolPrj">
+  <a href="https://github.com/TOMMASO26175/schoolPrjBackend">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -16,7 +16,7 @@
     <br />
     Admis can handle users throught the portal, modything users stuffs
     <br />
-    <a href="https://github.com/TOMMASO26175/schoolPrj"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/TOMMASO26175/schoolPrjBackend"><strong>Explore the docs »</strong></a>
     <br />
   </p>
 </div>

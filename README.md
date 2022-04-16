@@ -27,9 +27,7 @@ In this project I've used the followings frameworks/libraries:
 
 * [MongoDB](https://mongodb.com/)
 * [Express](https://expressjs.com/)
-* [ReactJS](https://reactjs.org/)
 * [NodeJS](https://nodejs.org/)
-* [Bootstrap](https://getbootstrap.com)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

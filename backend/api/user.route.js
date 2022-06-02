@@ -6,7 +6,7 @@ const router = express.Router();
 router.route("/register").post(UserDAO.signUp);
 router.route("/login").post(UserDAO.signIn);
 
-router.get("/home", function (req, res) {
+router.post("/home", function (req, res) {
   verifyToken(req, res, function (cb) {
     var user = cb;
     UserDAO.checkSubscription(user, res, true, function (sub) {
@@ -18,6 +18,16 @@ router.get("/home", function (req, res) {
     });
   });
 });
+
+router.post("/data", function (req, res) {
+  verifyToken(req, res, function (cb) {
+    var user = cb;
+    res.status(200).send({
+      user
+    });
+  });
+});
+
 
 router.post("/subscribe", function (req, res) {
   verifyToken(req, res, function (cb) {

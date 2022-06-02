@@ -12,8 +12,8 @@ app.use(
   })
 );
 
-app.use("/user", users);
-app.use("/admin", admins);
+app.use("/api/user", users);
+app.use("/api/admin", admins);
 
 app.use("*", (req, res) => res.status(404).json({ error: "not found" }));
 
